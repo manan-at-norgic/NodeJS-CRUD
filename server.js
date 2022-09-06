@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+require('dotenv)).config();
 
 // create express app
 var app = express();
@@ -11,12 +12,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 // Configuring the database
-var dbConfig = require('./config/database.config.js');
+//var dbConfig = require('./config/database.config.js');
 var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(dbConfig.url, {
+mongoose.connect(process.env.DB, {
 	useMongoClient: true
 });
 
